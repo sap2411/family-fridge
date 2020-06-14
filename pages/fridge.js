@@ -1,4 +1,5 @@
-let fridgePage = `
+function fridgePage(fridge){
+return `
 <h1>${fridge.name} Fridge</h1>
 <div id="fridge-display">
     <img     >
@@ -13,3 +14,4 @@ let fridgePage = `
 <button name='Post To Fridge'>
 <button name='Leave Fridge'>
 `
+}

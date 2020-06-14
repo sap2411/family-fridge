@@ -10,25 +10,28 @@ document.addEventListener("DOMContentLoaded", () => {
         login.addEventListener("submit", (e) => {
             e.preventDefault()
             let loginData = e.target.username.value
-            findUser(getUsers(), loginData)
+            getUsers(loginData)
         })
 
-        function getUsers(){
+        function getUsers(loginData){
             fetch('http://localhost:3000/users')
             .then(resp => resp.json())
-            .then(json => json)
+            .then(json => findUser(json, loginData))
         }
 
         function findUser(json, loginData){
-            let result = json.forEach(user => {
+            let check = false
+            json.forEach(user => {
                 if(user.username == loginData){
-                    return user
+                    check = user
                 }
             })
-            if(!result){
+
+            if(!check){
                 alert("That User Does Not Exist, Please Create An Account.")
             }else {
                 replaceable.innerHTML = accountPage
+                document.getElementById("user").innerText = check.id
             }
         }
     }
