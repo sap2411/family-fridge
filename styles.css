@@ -1,0 +1,20 @@
+ /* #user-login{
+    color: blue;
+    text-align: center;
+}
+#user-create{
+    text-align: center;
+
+} */
+.card{ 
+    box-align: center;
+    width: 18rem;
+    text-align: center;
+    background-color: beige;
+    position: center;
+    margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-top: 150px;
+        margin-bottom: 10px
+};
+

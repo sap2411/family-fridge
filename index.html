@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head></head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css" charset="utf-8">
+    <style>
+      body{
+        /* background image centered and non repeating */
+        background-repeat: no-repeat;
+        background-position: 50% -10%; 
+        background-image: url(https://images.homedepot-static.com/productImages/5abd73e7-0790-4ab4-aa99-acd64ed909cc/svn/red-magic-chef-mini-fridges-hmcr320re-64_1000.jpg);
+        
+      }
+      
+      
+    </style>
     <title>Family Fridge</title>
     <script src="pages/account.js"></script>
     <script src="pages/fridge.js"></script>
@@ -14,21 +31,58 @@
 
   <body>
     <div id="user" hidden="true"></div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger ">
+      <a class="navbar-brand" href="#">Family Fridge</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto nav-fill w-100">
+          <li class="nav-item active">
+             <a class="nav-link" "Home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" < link_to("Your Fridge")>Your Fridge</a> 
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" < link_to("Upload Image")>Upload Image</a> 
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" < link_to("Create New Fridge")>Create New Fridge</a> 
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" < link_to("Your Account")>Your Account</a> 
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" < link_to("Log Out")>Log Out</a> 
+          </li>
+        </ul>
+        
+      </div>
+    </nav>
     <div id="first">
-        <h1>Family Fridge</h1>
-        <div id="title-deep">
+        
+        <div class="card border-light" id="title-deep">
             <form id='user-login' accept-charset="utf-8">
-                <label>Log In:</label><br>
+              <div class="card-header">
+                Log In
+              </div>
                 <input type="text" name="username" class="input" id="username" placeholder="Enter Your Name" autocomplete="off"/>
-                <input type="submit" name="submit" class="submit" id="user-submit" />
+                <input type="submit" name="submit" class="btn btn-primary" id="user-submit" />
             </form>
             <h4>Or</h4>
             <form id='user-create' accept-charset="utf-8">
-                <label>Create Account:</label><br>
+              <div class="card-header">
+                Create User
+              </div>
                 <input type="text" name="username" class="input" id="new-username" placeholder="Enter Your Name" autocomplete="off"/>
-                <input type="submit" name="submit" class="submit" id="new-user-submit" />
+                <input type="submit" name="submit" class="btn btn-primary" id="new-user-submit" />
             </form>
         </div>        
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
 </html>
