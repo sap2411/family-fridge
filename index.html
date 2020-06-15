@@ -31,52 +31,72 @@
 
   <body>
     <div id="user" hidden="true"></div>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger ">
-      <a class="navbar-brand" href="#">Family Fridge</a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger " id="navbar">
+      <a class="navbar-brand" >Family Fridge</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!-- sorry i cant figure out how to do this in css to make the button not look ugly -->
+      <style type='text/css'>
+        .button{
+        display: inline-block;
+        border: none;
+        padding: 1rem 2rem;
+        margin: 0;
+        text-decoration: none;
+        background: inherit;
+        color: #ffffff;
+        font-family: sans-serif;
+        font-size: 1rem;
+        cursor: pointer;
+        text-align: center;
+        transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        }
+      </style>
     
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto nav-fill w-100">
+        <ul class="navbar-nav mr-auto nav-fill w-100" id='navOptions' hidden='true'>
           <li class="nav-item active">
-             <a class="nav-link" "Home">Home</a>
+            <button class="button" id='home-button' type='button'>Home</button>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" < link_to("Your Fridge")>Your Fridge</a> 
+          </li> -->
+          <li class="nav-item active">
+            <button class="button" id='uplaod-image-button' type='button'>Upload Image</button> 
           </li>
-          <li class="nav-item">
-            <a class="nav-link" < link_to("Upload Image")>Upload Image</a> 
+          <li class="nav-item active">
+            <button class="button" id='add-fridge-button' type='button'>Add A Fridge</button> 
           </li>
-          <li class="nav-item">
-            <a class="nav-link" < link_to("Create New Fridge")>Create New Fridge</a> 
-          </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" < link_to("Your Account")>Your Account</a> 
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" < link_to("Log Out")>Log Out</a> 
+          </li> -->
+          <li class="nav-item active">
+            <button class="button" id='logout-button' type='button'>Log Out</button> 
           </li>
         </ul>
         
       </div>
     </nav>
     <div id="first">
-        
         <div class="card border-light" id="title-deep">
             <form id='user-login' accept-charset="utf-8">
               <div class="card-header">
-                Log In
+                <h2>Log In</h2>
               </div>
-                <input type="text" name="username" class="input" id="username" placeholder="Enter Your Name" autocomplete="off"/>
+                <input type="text" name="username" class="input" id="username" placeholder="Username" autocomplete="off"/>
                 <input type="submit" name="submit" class="btn btn-primary" id="user-submit" />
-            </form>
-            <h4>Or</h4>
+            </form><br>
+            <h6>Or</h6>
             <form id='user-create' accept-charset="utf-8">
               <div class="card-header">
-                Create User
+                <h2>Create User</h2>
               </div>
-                <input type="text" name="username" class="input" id="new-username" placeholder="Enter Your Name" autocomplete="off"/>
+                <input type="text" name="username" class="input" id="new-username" placeholder="New Username" autocomplete="off"/>
+                <input type="text" name="name" class="input" id="new-name" placeholder="Enter Your Name" autocomplete="off"/><br>
                 <input type="submit" name="submit" class="btn btn-primary" id="new-user-submit" />
             </form>
         </div>        
