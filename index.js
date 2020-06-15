@@ -52,7 +52,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }else {
                 navButtons()
                 document.getElementById("user").innerText = loggedInUser.id
-                buildAccountPage()
+                fetch(`http://localhost:3000/users/${loggedInUser.id}`)
+                .then(resp => resp.json())
+                .then(json => {
+                    loggedInUser = json.data.attributes
+                    buildAccountPage()
+                })
             }
         }
     }
@@ -91,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function buildAccountPage(){
         replaceable.innerHTML = accountPage()
         document.querySelector('.display-name').innerText = loggedInUser.name
-        loggedInUser.images.forEach(photo => {
+        loggedInUser.images.forEach(image => {
             addPhotoToCollection(image)
         })
         loggedInUser.fridges.forEach(fridge => {
