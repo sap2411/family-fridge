@@ -97,6 +97,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function buildAccountPage(){
+        document.body.className = "body_1 border-light"
+        replaceable.className = "card_1 "
         replaceable.innerHTML = accountPage()
         document.querySelector('.display-name').innerText = loggedInUser.name
         loggedInUser.images.forEach(image => {
@@ -133,6 +135,9 @@ document.addEventListener("DOMContentLoaded", () => {
             div.className = "album-card"
             const div2 = document.createElement('div')
             const img = document.createElement('img')
+            img.addEventListener('click', function(){
+                buildFridgePage(fridge.id)
+            })
             div2.className = "image"
             img.src = fridge.url
             img.className = "fridge"
@@ -150,5 +155,15 @@ document.addEventListener("DOMContentLoaded", () => {
             //     alert(err)
             // })
         }
+    }
+
+    function buildFridgePage(id){
+        fetch(`http://localhost:3000/fridges/${id}`)
+        .then(resp => resp.json())
+        .then(json => {
+            console.log("here")
+            console.dir(json);
+            replaceable.innerHTML = fridgePage(json)
+        })
     }
 })

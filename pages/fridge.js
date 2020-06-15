@@ -1,13 +1,12 @@
 function fridgePage(fridge){
 return `
-<h1>${fridge.name} Fridge</h1>
+<h1>${fridge.data.attributes.name} Fridge</h1>
 <div id="fridge-display">
-    <img     >
+    <img src=${fridge.data.attributes.url}>
 </div>
 
 <div id="comment-box">
     <ul id='comment-list'>
-        (example)<li><img src=${image.url}> <p>Discription</p> <button name='Comment'>
     </ul>
 </div>
 
@@ -15,3 +14,4 @@ return `
 <button name='Leave Fridge'>
 `
 }
+/* <li><img src=${fridge.data.attributes.images.first.url}> <p>Discription</p> <button name='Comment'> */
