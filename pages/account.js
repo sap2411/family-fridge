@@ -15,4 +15,3 @@ function accountPage(){
 <button id='delete-account' type='button'>Delete Account</button>
 `
 }
-

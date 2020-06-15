@@ -87,10 +87,10 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch('http://localhost:3000/users', configObj)
             .then(resp => resp.json())
             .then(json => {
-                if(json){
-                    alert("You Can Now Log In With That Username.")
-                }
-            })
+                    loggedInUserId = json.data.id
+                    loggedInUser = json.data.attributes
+                    buildAccountPage()
+            }).catch(error => {alert(error)})
             signup.username.value = ''
             signup.name.value = ''
         }
@@ -120,9 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 div2.className = "image"
                 const img = document.createElement('img')
                 img.src = image.url
-                img.width = "150"
-                img.height = "150"
-                div.className = 'photo-collection-display'
+                img.className = "pic"
                 div2.appendChild(img)
                 div.appendChild(div2)
                 album.appendChild(div)
@@ -137,9 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const img = document.createElement('img')
             div2.className = "image"
             img.src = fridge.url
-            img.width = "150"
-            img.height = "300"
-            div.className = 'fridge-colleection-display'
+            img.className = "fridge"
             div2.appendChild(img)
             div.appendChild(div2)
             album.appendChild(div)
