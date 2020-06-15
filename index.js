@@ -55,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 fetch(`http://localhost:3000/users/${loggedInUser.id}`)
                 .then(resp => resp.json())
                 .then(json => {
+                    loggedInUserId = json.data.id
                     loggedInUser = json.data.attributes
                     buildAccountPage()
                 })
@@ -106,8 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         document.getElementById('delete-account').addEventListener('click', function(){
             if (confirm("Are you sure you wish to delete your account and all of its data?")) {
-                // deleteUser();
-                location.reload();
+                deleteUser();
               }
         })
 
@@ -145,12 +145,14 @@ document.addEventListener("DOMContentLoaded", () => {
             album.appendChild(div)
         }
 
-        // function deleteUser(){
-        //     fetch(`http://localhost:3000/users/${loggedInUser.id}`, {
-        //         method: 'DELETE',
-        //     })
-        //     .then(res => res.json()) // or res.json()
-        //     .then(json => console.log(json))
-        // }
+        function deleteUser(){
+            fetch(`http://localhost:3000/users/${loggedInUserId}`, {
+                method: 'DELETE',
+            })
+            .then(location.reload())
+            // .catch(err => {
+            //     alert(err)
+            // })
+        }
     }
 })
