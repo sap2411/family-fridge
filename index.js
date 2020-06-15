@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
         function postUser(e){
             const data = {
                 "username": e.target.username.value,
+                "name": e.target.name.value
             }
             const configObj = {
                 'method': 'POST',
@@ -90,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             })
             signup.username.value = ''
+            signup.name.value = ''
         }
     }
 
@@ -111,28 +113,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function addPhotoToCollection(image){
             if(!!image.url){
-                const ul = document.getElementById('photo-collection')
+                const album = document.getElementById('photo-collection')
                 const div = document.createElement('div')
-                const li = document.createElement('li')
+                div.className = "album-card"
+                const div2 = document.createElement('div')
+                div2.className = "image"
                 const img = document.createElement('img')
                 img.src = image.url
+                img.width = "150"
+                img.height = "150"
                 div.className = 'photo-collection-display'
-                li.appendChild(img)
-                div.appendChild(li)
-                ul.appendChild(div)
+                div2.appendChild(img)
+                div.appendChild(div2)
+                album.appendChild(div)
             }
         }
 
         function addFridgeToCollection(fridge){
-            const ul = document.getElementById('fridge-collection')
+            const album = document.getElementById('fridge-collection')
             const div = document.createElement('div')
-            const li = document.createElement('li')
+            div.className = "album-card"
+            const div2 = document.createElement('div')
             const img = document.createElement('img')
+            div2.className = "image"
             img.src = fridge.url
+            img.width = "150"
+            img.height = "300"
             div.className = 'fridge-colleection-display'
-            li.appendChild(img)
-            div.appendChild(li)
-            ul.appendChild(div)
+            div2.appendChild(img)
+            div.appendChild(div2)
+            album.appendChild(div)
         }
+
+        // function deleteUser(){
+        //     fetch(`http://localhost:3000/users/${loggedInUser.id}`, {
+        //         method: 'DELETE',
+        //     })
+        //     .then(res => res.json()) // or res.json()
+        //     .then(json => console.log(json))
+        // }
     }
 })

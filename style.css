@@ -1,0 +1,63 @@
+ /* #user-login{
+    color: blue;
+    text-align: center;
+}
+#user-create{
+    text-align: center;
+
+} */
+.card{ 
+    box-align: center;
+    width: 18rem;
+    text-align: center;
+    background-color: beige;
+    position: center;
+    margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-top: 150px;
+        margin-bottom: 10px
+}
+
+body{
+    /* background image centered and non repeating */
+    background-repeat: no-repeat;
+    background-position: 50% -10%; 
+    background-image: url(https://images.homedepot-static.com/productImages/5abd73e7-0790-4ab4-aa99-acd64ed909cc/svn/red-magic-chef-mini-fridges-hmcr320re-64_1000.jpg); 
+}
+
+.button {
+    display: inline-block;
+    border: none;
+    padding: none;
+    margin: 0;
+    text-decoration: none;
+    background:inherit;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 1.3rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.album {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 80px;
+    margin: 20px 0;
+    grid-auto-rows: 250px;
+  }
+  
+  .album .album-card {
+    position: relative;
+    width: 201px;
+  }
+  
+  .album .album-card .image {
+    width: 200px;
+    height: 133px;
+  }
