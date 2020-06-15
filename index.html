@@ -1,26 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="styles.css" charset="utf-8">
-    <style>
-      body{
-        /* background image centered and non repeating */
-        background-repeat: no-repeat;
-        background-position: 50% -10%; 
-        background-image: url(https://images.homedepot-static.com/productImages/5abd73e7-0790-4ab4-aa99-acd64ed909cc/svn/red-magic-chef-mini-fridges-hmcr320re-64_1000.jpg);
-        
-      }
-      
-      
-    </style>
+    <link rel="stylesheet" href="style.css" type="text/css" charset="utf-8">
     <title>Family Fridge</title>
     <script src="pages/account.js"></script>
     <script src="pages/fridge.js"></script>
@@ -36,49 +23,21 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- sorry i cant figure out how to do this in css to make the button not look ugly -->
-      <style type='text/css'>
-        .button{
-        display: inline-block;
-        border: none;
-        padding: 1rem 2rem;
-        margin: 0;
-        text-decoration: none;
-        background: inherit;
-        color: #ffffff;
-        font-family: sans-serif;
-        font-size: 1rem;
-        cursor: pointer;
-        text-align: center;
-        transition: background 250ms ease-in-out, 
-                transform 150ms ease;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        }
-      </style>
-    
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto nav-fill w-100" id='navOptions' hidden='true'>
           <li class="nav-item active">
             <button class="button" id='home-button' type='button'>Home</button>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" < link_to("Your Fridge")>Your Fridge</a> 
-          </li> -->
           <li class="nav-item active">
             <button class="button" id='uplaod-image-button' type='button'>Upload Image</button> 
           </li>
           <li class="nav-item active">
             <button class="button" id='add-fridge-button' type='button'>Add A Fridge</button> 
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" < link_to("Your Account")>Your Account</a> 
-          </li> -->
           <li class="nav-item active">
             <button class="button" id='logout-button' type='button'>Log Out</button> 
           </li>
-        </ul>
-        
+        </ul> 
       </div>
     </nav>
     <div id="first">
@@ -87,13 +46,12 @@
               <div class="card-header">
                 <h2>Log In</h2>
               </div>
-                <input type="text" name="username" class="input" id="username" placeholder="Username" autocomplete="off"/>
+                <input type="text" name="username" class="input" id="username" placeholder="Username" autocomplete="off"/><br>
                 <input type="submit" name="submit" class="btn btn-primary" id="user-submit" />
             </form><br>
-            <h6>Or</h6>
             <form id='user-create' accept-charset="utf-8">
               <div class="card-header">
-                <h2>Create User</h2>
+                <h2>Create Account</h2>
               </div>
                 <input type="text" name="username" class="input" id="new-username" placeholder="New Username" autocomplete="off"/>
                 <input type="text" name="name" class="input" id="new-name" placeholder="Enter Your Name" autocomplete="off"/><br>
