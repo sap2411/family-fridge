@@ -177,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function buildUploadImgPage(){
         replaceable.innerHTML = uploadImgPage()
         const form = document.getElementById("image_load")
+        populateForm()
         form.addEventListener("submit", function(event) {
             event.preventDefault()
             const fileInput = event.target.querySelector('input');
@@ -195,13 +196,46 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(resp => resp.json())
             .then(json => {
                 console.log(json.data.link)
-                refreshUser()
+                postImgToBackend(json.data.link, event)
             })
             .catch(error => {
                 console.error(error);
                 //alert('Upload failed: ' + error);
             });
         })
+
+        function postImgToBackend(link, e){
+            const data = {
+                "url": link,
+                "name": e.target.name.value,
+                "description": e.target.description.value,
+                "fridge_id": e.target.fridge.value,
+                "user_id": loggedInUserId
+            }
+            const configObj = {
+                'method': 'POST',
+                'headers': {
+                    'Content-Type': "application/json",
+                    Accept: 'application/json'
+                },
+                'body': JSON.stringify(data)
+            }
+            
+            fetch('http://localhost:3000/images', configObj)
+            .then(resp => resp.json())
+            .then(refreshUser())
+            .catch(error => {alert(error)})
+        }
+
+        function populateForm(){
+            let select = document.getElementById('fridge_selection')
+            loggedInUser.fridges.forEach(fridge => {
+                let option = document.createElement('option')
+                option.value = fridge.id
+                option.innerText = fridge.name
+                select.appendChild(option)
+            })
+        }
     }
 
     function buildNewFridgePage() {
@@ -230,5 +264,5 @@ document.addEventListener("DOMContentLoaded", () => {
             option.innerText = user.username
             return option
         } 
-      }
+    }
 })
