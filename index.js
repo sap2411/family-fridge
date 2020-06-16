@@ -211,8 +211,6 @@ document.addEventListener("DOMContentLoaded", () => {
         let friends3 = document.getElementById("friends3")
         let friends4 = document.getElementById("friends4")
         let friends5 = document.getElementById("friends5")
-
-        console.log(friends1, friends2, friends3, friends4, friends5)
       
         allUsers.forEach(user => {
           if (user.id != loggedInUserId) {
@@ -224,11 +222,44 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
 
+        addSelectFriendEvent(friends1)
+        addSelectFriendEvent(friends2)
+        addSelectFriendEvent(friends3)
+        addSelectFriendEvent(friends4)
+        addSelectFriendEvent(friends5)
+
         function addFriend(user) {
             let option = document.createElement("option")
             option.value = user.id
             option.innerText = user.username
             return option
         } 
+
+        function removeFriendOptions(myNode) {
+            while (myNode.lastChild.value != "null") {
+                myNode.removeChild(myNode.lastChild);
+            }
+        }
+
+        function addSelectFriendEvent(selection) {
+            selection.addEventListener ("change", function(event) {
+                let friends_value_array = [friends1.value, friends2.value, friends3.value, friends4.value, friends5.value]
+                let friends_array = [friends1, friends2, friends3, friends4, friends5]
+                friends_array.forEach(friends => removeFriendOptions(friends))
+
+                allUsers.forEach(user => {
+                    if (user.id != loggedInUserId) {
+                        for(friends in friends_array) {
+                            if (!friends_value_array.includes(user.id.toString())) {
+                                friends_array[friends].appendChild(addFriend(user))
+                            } else if (friends_value_array[friends] == user.id) {
+                                friends_array[friends].appendChild(addFriend(user))
+                                friends_array[friends].value = user.id
+                            }
+                        }
+                    }
+                })
+            })
+        }
       }
 })
