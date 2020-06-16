@@ -29,6 +29,16 @@ document.addEventListener("DOMContentLoaded", () => {
         navoptions.style.display = "flex"
     }
 
+    function refreshUser(){
+        fetch(`http://localhost:3000/users/${loggedInUser.id}`)
+        .then(resp => resp.json())
+        .then(json => {
+            loggedInUserId = json.data.id
+            loggedInUser = json.data.attributes
+            buildAccountPage()
+        })
+    }
+
     function handleLogin(){
         login.addEventListener("submit", (e) => {
             e.preventDefault()
@@ -55,13 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }else {
                 navButtons()
                 document.getElementById("user").innerText = loggedInUser.id
-                fetch(`http://localhost:3000/users/${loggedInUser.id}`)
-                .then(resp => resp.json())
-                .then(json => {
-                    loggedInUserId = json.data.id
-                    loggedInUser = json.data.attributes
-                    buildAccountPage()
-                })
+                refreshUser()
             }
         }
     }
@@ -69,7 +73,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function HandleSignup(){
         signup.addEventListener("submit", (e) => {
             e.preventDefault()
-            let signupData = e.target.username.value
             postUser(e)
         })
 
@@ -92,10 +95,8 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(json => {
                     loggedInUserId = json.data.id
                     loggedInUser = json.data.attributes
-                    buildAccountPage()
+                    refreshUser()
             }).catch(error => {alert(error)})
-            signup.username.value = ''
-            signup.name.value = ''
         }
     }
 
@@ -194,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(resp => resp.json())
             .then(json => {
                 console.log(json.data.link)
+                refreshUser()
             })
             .catch(error => {
                 console.error(error);
