@@ -30,11 +30,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function refreshUser(){
-        fetch(`http://localhost:3000/users/${loggedInUser.id}`)
+        fetch(`http://localhost:3000/users/${loggedInUserId}`)
         .then(resp => resp.json())
         .then(json => {
             loggedInUserId = json.data.id
             loggedInUser = json.data.attributes
+            console.dir(loggedInUser)
             buildAccountPage()
         })
     }
@@ -65,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }else {
                 navButtons()
                 document.getElementById("user").innerText = loggedInUser.id
+                loggedInUserId = loggedInUser.id
                 refreshUser()
             }
         }
