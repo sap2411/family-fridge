@@ -93,6 +93,11 @@
 .album .album-card .image .pic {
       height: 150px;
       width: 150px;
+     
+        position: relative;
+        /* for Description */
+        /* content: attr(title); */
+ 
       object-fit: cover;
 }
 
@@ -103,10 +108,21 @@
     width: 70px;
 }
 
-button{
-    cursor: pointer;
+.polaroid{
+    height: 150px;
+      width: 150px;
+    background: #ffffff;
+    display: inline;
+   
+    margin: 55px 75px 30px;
+      padding: 10px 10px 30px;
+
+      text-align: center;
+      text-decoration: none;
+      -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+      -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+ 
+      z-index: 0;
 }
 
-.pointer{
-    cursor: pointer;
-}
