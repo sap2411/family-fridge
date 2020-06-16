@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         document.getElementById('uplaod-image-button').addEventListener('click', function(){
             //run function 'buildUploadImgPage()' once its developed, this is just placeholder
-            replaceable.innerHTML = uploadImgPage()
+            buildUploadImgPage()
         })
         document.getElementById('add-fridge-button').addEventListener('click', function(){
             replaceable.innerHTML = newFridgePage()
@@ -167,6 +167,34 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("here")
             console.dir(json);
             replaceable.innerHTML = fridgePage(json)
+        })
+    }
+
+    function buildUploadImgPage(){
+        replaceable.innerHTML = uploadImgPage()
+        const form = document.getElementById("image_load")
+        form.addEventListener("submit", function(event) {
+            event.preventDefault()
+            const fileInput = event.target.querySelector('input');
+            const imageFile = fileInput.files[0];
+            const formData = new FormData();
+            formData.append('image', imageFile);
+            const configObj = {
+                method: "POST",
+                headers: {
+                    Authorization: "Client-ID 1c546c5b9f3b4ec"
+                },
+                body: formData
+            }
+            fetch("https://api.imgur.com/3/image",configObj)
+            .then(resp => resp.json())
+            .then(json => {
+                console.log(json.data.link)
+            })
+            .catch(error => {
+                console.error(error);
+                //alert('Upload failed: ' + error);
+            });
         })
     }
 })
