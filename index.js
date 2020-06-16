@@ -7,6 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const signup = document.getElementById("user-create")
     const replaceable = document.getElementById("title-deep")
     let loggedInUser = false
+    let loggedInUserId = false
+    let allUsers = false
     handleLogin()
     HandleSignup()
 
@@ -19,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             buildUploadImgPage()
         })
         document.getElementById('add-fridge-button').addEventListener('click', function(){
-            replaceable.innerHTML = newFridgePage()
+            buildNewFridgePage(allUsers, loggedInUser)
         })
         document.getElementById('logout-button').addEventListener('click', function(){
             location.reload();
@@ -41,6 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function findUser(json, loginData){
+            allUsers = json
             json.forEach(user => {
                 if(user.username == loginData){
                    return loggedInUser = user
@@ -179,6 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const imageFile = fileInput.files[0];
             const formData = new FormData();
             formData.append('image', imageFile);
+
             const configObj = {
                 method: "POST",
                 headers: {
@@ -197,4 +201,32 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         })
     }
+
+    function buildNewFridgePage() {
+        replaceable.innerHTML = newFridgePage()
+        let friends1 = document.getElementById("friends1")
+        let friends2 = document.getElementById("friends2")
+        let friends3 = document.getElementById("friends3")
+        let friends4 = document.getElementById("friends4")
+        let friends5 = document.getElementById("friends5")
+
+        console.log(friends1, friends2, friends3, friends4, friends5)
+      
+        allUsers.forEach(user => {
+          if (user.id != loggedInUserId) {
+            friends1.appendChild(addFriend(user))
+            friends2.appendChild(addFriend(user))
+            friends3.appendChild(addFriend(user))
+            friends4.appendChild(addFriend(user))
+            friends5.appendChild(addFriend(user))
+          }
+        })
+
+        function addFriend(user) {
+            let option = document.createElement("option")
+            option.value = user.id
+            option.innerText = user.username
+            return option
+        } 
+      }
 })
