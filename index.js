@@ -134,14 +134,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const div = document.createElement('div')
             div.className = "album-card"
             const div2 = document.createElement('div')
+            const name = document.createElement('p')
+            name.innerText = fridge.name
             const img = document.createElement('img')
             img.addEventListener('click', function(){
                 buildFridgePage(fridge.id)
             })
             div2.className = "image"
             img.src = fridge.url
-            img.className = "fridge"
+            img.className = "fridge pointer"
             div2.appendChild(img)
+            div2.appendChild(name)
             div.appendChild(div2)
             album.appendChild(div)
         }

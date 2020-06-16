@@ -31,6 +31,14 @@
 
 }
 
+#fridge-show{ 
+    object-fit: cover;
+    object-position: 50% 0;
+    height: 1000px;
+    width: 450px;
+}
+
+
 .body{
     /* background image centered and non repeating */
     background-repeat: no-repeat;
@@ -95,3 +103,10 @@
     width: 70px;
 }
 
+button{
+    cursor: pointer;
+}
+
+.pointer{
+    cursor: pointer;
+}
