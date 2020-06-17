@@ -2,7 +2,7 @@ function newFridgePage(users){
 return `
 <h1>Make A New Fridge</h1>
 <form id="new_fridge_form">
-<input type="text" name="title" placeholder="Fridge Name"><br>
+<input type="text" name="title" maxlength="20" placeholder="Fridge Name"><br>
 <select name="friends1" id="friends1">
   <option value="null">Select a Friend</option>
 </select><br>
