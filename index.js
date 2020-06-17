@@ -180,7 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let fridgeDiv = document.getElementById('fridge-display');
             let i = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             fridge.data.attributes.images.forEach(pic => {
-                console.log("forEach")
+                console.dir(pic)
                 let polDiv = document.createElement('div');
                 let index = Math.floor(Math.random() * Math.floor(i.length));
                 polDiv.className = `polaroid-card polaroid-${i[index]} r-${i[index]}`
@@ -188,6 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let img = document.createElement('img');
                 img.className = 'fridge-img'
                 img.src = pic.url
+                img.name = pic.id
                 let titleDiv = document.createElement('div');
                 titleDiv.className = 'img-text-div'
                 let p = document.createElement('p')
@@ -196,14 +197,102 @@ document.addEventListener("DOMContentLoaded", () => {
                 polDiv.appendChild(img)
                 polDiv.appendChild(titleDiv)
                 fridgeDiv.appendChild(polDiv)
-                addListenerToPolaroid(polDiv)
+                addListenerToPolaroid(polDiv, pic)
             })
 
         }
 
-        function addListenerToPolaroid(polaroid){
+        function addListenerToPolaroid(polaroid, json){
             polaroid.addEventListener('click', function(){
+                fillCommentDiv(json)
+            })
+        }
 
+        function fillCommentDiv(image){
+            let stolen = document.getElementById('stolen');
+            stolen.hidden ? (stolen.hidden = false):(stolen.hidden = true);
+
+                    
+            const imgTag = document.querySelector('.image')
+            const title = document.querySelector('.title')
+            const commentList = document.querySelector('.comments')
+            const post = document.querySelector('.comment-form')
+            let imgId
+            fetchImg(image)
+
+            function fetchImg(image){
+                fetch(`http://localhost:3000/images/${image.id}`)
+                .then(resp => resp.json())
+                .then(json => showImg(json))
+            }
+
+
+            function postCommentFetch(e){
+                const data = {
+                    "image_id": imgId,
+                    'user_id': loggedInUserId,
+                    "comment_info": e.target.comment.value
+                }
+                const configObj = {
+                    'method': 'POST',
+                    'headers': {
+                        'Content-Type': "application/json",
+                        Accept: 'application/json'
+                    },
+                    'body': JSON.stringify(data)
+                }
+                
+                fetch('http://localhost:3000/comments', configObj)
+                .then(resp => resp.json())
+                .then(json => displayComment(json))
+                post.comment.value = ''
+                
+            }
+
+            function deleteCommentFetch(n){
+                fetch(`http://localhost:3000/comments/${n}`, {method: 'delete'})
+                .then(resp => resp.json())
+                .then(function(){
+                    const li = document.getElementById(n)
+                    li.remove()
+                })
+            }
+
+            // display info
+            function showImg(image){
+                console.dir(image)
+                imgId = image.id
+                imgTag.src = image.url
+                title.innerText = image.name
+                for (const comment of image.data.attributes.comments){
+                    displayComment(comment)
+                }
+            }
+        
+            function displayComment(json){
+                const li = document.createElement('li')
+                li.className = 'li-section'
+                li.id = json.id
+                li.textContent = json.comment_info
+                deleteButton(li)
+                commentList.appendChild(li)
+            }
+
+  
+            // button and event listeners
+            function deleteButton(li){
+                let button = document.createElement('button')
+                button.className = 'delete-button'
+                button.innerHTML = 'Delete'
+                li.appendChild(button)
+                button.addEventListener('click', function(e){
+                    deleteCommentFetch(e.target.parentNode.id)
+                })
+            }
+
+            post.addEventListener('submit', function(e){
+                e.preventDefault();
+                postCommentFetch(e)
             })
         }
     }
@@ -359,3 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 })
+
+
+
+
