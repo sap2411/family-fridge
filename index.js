@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             fetch('http://localhost:3000/images', configObj)
             .then(resp => resp.json())
-            .then(refreshUser())
+            .then(refreshUser)
             .catch(error => {alert(error)})
         }
 
@@ -297,5 +297,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 })
             })
         }
+
+        document.getElementById('new_fridge_form').addEventListener('submit', (e) => {
+            e.preventDefault()
+
+            const data = {
+                "url": e,
+                "name": e.target.name.value,
+                "description": e.target.description.value,
+                "fridge_id": e.target.fridge.value,
+                "user_id": loggedInUserId
+            }
+            const configObj = {
+                'method': 'POST',
+                'headers': {
+                    'Content-Type': "application/json",
+                    Accept: 'application/json'
+                },
+                'body': JSON.stringify(data)
+            }
+            
+            fetch('http://localhost:3000/fridges', configObj)
+            .then(resp => resp.json())
+            .then(refreshUser)
+            .catch(error => {alert(error)})
+
+        })
       }
 })

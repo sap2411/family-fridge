@@ -12,6 +12,6 @@ function accountPage(){
 <div id="fridge-collection" class="album">
 
 </div><br>
-<button id='delete-account' type='button'>Delete Account</button>
+<button id='delete-account' class="btn btn-primary" type='button'>Delete Account</button>
 `
 }
