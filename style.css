@@ -31,11 +31,12 @@
 
 }
 
+
 #fridge-show{ 
     object-fit: cover;
     object-position: 50% 0;
-    height: 1000px;
-    width: 450px;
+    height: 1200px;
+    width: 700px;
 }
 
 
@@ -108,7 +109,7 @@
     width: 70px;
 }
 
-.polaroid{
+/* .polaroid{
     height: 150px;
       width: 150px;
     background: #ffffff;
@@ -124,9 +125,81 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
  
       z-index: 0;
+} */
+
+.polaroid-card{ 
+    position: absolute;
+    box-align: center;
+    height: 155px;
+    width: 150px;
+    text-align: center;
+    background-color: white;
+    position: center;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+
+    /* margin: 0 auto;
+        float: none;
+        margin-top: 150px;
+        margin-bottom: 10px */
 }
+
+.polaroid-1{
+    top: 340px;
+    left: 460px;
+}
+.polaroid-2{
+    top: 340px;
+    left: 630px;
+}
+.polaroid-3{
+    top: 630px;
+    left: 460px;
+}
+.polaroid-4{
+    top: 630px;
+    left: 630px;
+}
+.polaroid-5{
+    top: 815px;
+    left: 250px;
+}
+.polaroid-6{
+    top: 815px;
+    left: 460px;
+}
+.polaroid-7{
+    top: 815px;
+    left: 630px;
+}
+.polaroid-8{
+    top: 1000px;
+    left: 250px;
+}
+.polaroid-9{
+    top: 1000px;
+    left: 460px;
+}
+.polaroid-10{
+    top: 1000px;
+    left: 630px;
+}
+
+
+
 
 .pointer{
     cursor: pointer
+}
+
+.fridge-img{
+    object-fit: cover;
+    width: 125px;
+    height: 125px;
+/*     margin: px 75px 30px; */
+    padding: 10px 1px 2px;
+}
+
+.img-text-div{
+    padding: 3px 3px;
 }
 

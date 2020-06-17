@@ -2,17 +2,15 @@ function fridgePage(fridge){
 return `
 <h1>${fridge.data.attributes.name} Fridge</h1>
 <div id="fridge-display">
-    <img id="fridge-show" src=${fridge.data.attributes.url}>
+    <img id="fridge-show" src='https://images.homedepot-static.com/productImages/5abd73e7-0790-4ab4-aa99-acd64ed909cc/svn/red-magic-chef-mini-fridges-hmcr320re-64_1000.jpg'>
 </div>
-
-<div id="comment-box">
-    <ul id='comment-list'>
-    </ul>
-</div>
+        
 
 <button id='post-to-fridge' class="btn btn-primary" type='button'>Post To Fridge</button>
 <button id='leave-fridge' class="btn btn-primary" type='button'>Leave Fridge</button>
 
 `
 }
-/* <li><img src=${fridge.data.attributes.images.first.url}> <p>Discription</p> <button name='Comment'> */
+
+/* <p>${fridge.data.attributes.images[0].description}</p> 
+        <button class="btn btn-primary" type='button'>Remove From Fridge</button> */
