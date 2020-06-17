@@ -18,7 +18,7 @@ return `
 <select name="friends" id="friends5">
   <option value="null">Select a Friend</option>
 </select><br>
-<input type='submit' name='submit'>
+<input type='submit' name='submit' class="btn btn-primary">
 </form>
 `
 }
