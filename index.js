@@ -247,22 +247,20 @@ document.addEventListener("DOMContentLoaded", () => {
         let friends3 = document.getElementById("friends3")
         let friends4 = document.getElementById("friends4")
         let friends5 = document.getElementById("friends5")
+
+        let friends_array = [friends1, friends2, friends3, friends4, friends5]
       
         allUsers.forEach(user => {
           if (user.id != loggedInUserId) {
-            friends1.appendChild(addFriend(user))
-            friends2.appendChild(addFriend(user))
-            friends3.appendChild(addFriend(user))
-            friends4.appendChild(addFriend(user))
-            friends5.appendChild(addFriend(user))
+            friends_array.forEach(friends => {
+                friends.appendChild(addFriend(user))
+            })
           }
         })
 
-        addSelectFriendEvent(friends1)
-        addSelectFriendEvent(friends2)
-        addSelectFriendEvent(friends3)
-        addSelectFriendEvent(friends4)
-        addSelectFriendEvent(friends5)
+        friends_array.forEach(friends => {
+            addSelectFriendEvent(friends)
+        })
 
         function addFriend(user) {
             let option = document.createElement("option")
@@ -280,7 +278,6 @@ document.addEventListener("DOMContentLoaded", () => {
         function addSelectFriendEvent(selection) {
             selection.addEventListener ("change", function(event) {
                 let friends_value_array = [friends1.value, friends2.value, friends3.value, friends4.value, friends5.value]
-                let friends_array = [friends1, friends2, friends3, friends4, friends5]
                 friends_array.forEach(friends => removeFriendOptions(friends))
 
                 allUsers.forEach(user => {
