@@ -1,7 +1,7 @@
 function fridgePage(fridge){
 return `
 <h1>${fridge.data.attributes.name} Fridge</h1>
-<div id="fridge-display">
+<div class="fridge-display"id="fridge-display">
     <img id="fridge-show" src='https://images.homedepot-static.com/productImages/5abd73e7-0790-4ab4-aa99-acd64ed909cc/svn/red-magic-chef-mini-fridges-hmcr320re-64_1000.jpg'>
 </div>
         
