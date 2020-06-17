@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 console.log("forEach")
                 let polDiv = document.createElement('div');
                 let index = Math.floor(Math.random() * Math.floor(i.length));
-                polDiv.className = `polaroid-card polaroid-${i[index]}`
+                polDiv.className = `polaroid-card polaroid-${i[index]} r-${i[index]}`
                 i.splice(index, 1)
                 let img = document.createElement('img');
                 img.className = 'fridge-img'
