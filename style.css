@@ -279,3 +279,43 @@
     height: 1200px;
     width: 700px;
 }
+
+.r-1{
+    transform: rotate(-1deg);
+}
+
+.r-2{
+    transform: rotate(-2deg);
+}
+
+.r-3{
+    transform: rotate(-3deg);
+}
+
+.r-4{
+    transform: rotate(-4deg);
+}
+
+.r-5{
+    transform: rotate(-5deg);
+}
+
+.r-6{
+    transform: rotate(1deg);
+}
+
+.r-7{
+    transform: rotate(2deg);
+}
+
+.r-8{
+    transform: rotate(3deg);
+}
+
+.r-9{
+    transform: rotate(4deg);
+}
+
+.r-10{
+    transform: rotate(0deg);
+}
