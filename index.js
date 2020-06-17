@@ -35,7 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(json => {
             loggedInUserId = json.data.id
             loggedInUser = json.data.attributes
-            console.dir(loggedInUser)
             buildAccountPage()
         })
     }
@@ -103,6 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function buildAccountPage(){
+        console.log("in build account page")
         document.body.className = "body_1 border-light"
         replaceable.className = "card_1 "
         replaceable.innerHTML = accountPage()
@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             fetch('http://localhost:3000/images', configObj)
             .then(resp => resp.json())
-            .then(refreshUser())
+            .then(refreshUser)
             .catch(error => {alert(error)})
         }
 
