@@ -327,10 +327,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function buildFridge(e){
-            console.dir(e)
+            let user_fridge_data = [{user_id: loggedInUserId}]
+            friends_array.forEach(friend => {
+                if (friend.value != "null") {
+                    user_fridge_data.push({user_id: friend.value})
+                }
+            })
             const data = {
                 "url": 'https://c.shld.net/rpx/i/s/i/spin/10109385/prod_22969766112?hei=333&wid=333&op_sharpen=1',
                 "name": e.target.title.value,
+                "user_fridges_attributes": user_fridge_data
             }
             const configObj = {
                 'method': 'POST',
@@ -343,11 +349,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             fetch('http://localhost:3000/fridges', configObj)
             .then(resp => resp.json())
-            .then(json => {
-                console.log(json.data.id)
-                buildAssociations(e, json.data.id)
-                refreshUser()
-            })
+            .then(refreshUser)
             .catch(error => {alert(error)})
         }
       }
