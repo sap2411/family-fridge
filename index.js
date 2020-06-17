@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("loaded");
     const navoptions = document.getElementById('navOptions')
     navoptions.style.display = "none"
     navoptions.hidden = false
@@ -94,9 +93,11 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch('http://localhost:3000/users', configObj)
             .then(resp => resp.json())
             .then(json => {
-                    loggedInUserId = json.data.id
-                    loggedInUser = json.data.attributes
-                    refreshUser()
+                navButtons()
+                document.getElementById("user").innerText = loggedInUser.id
+                loggedInUserId = json.data.id
+                loggedInUser = json.data.attributes
+                refreshUser()
             }).catch(error => {alert(error)})
         }
     }
@@ -170,8 +171,6 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(`http://localhost:3000/fridges/${id}`)
         .then(resp => resp.json())
         .then(json => {
-            console.log("here")
-            console.dir(json);
             replaceable.innerHTML = fridgePage(json)
         })
     }
@@ -197,7 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
             fetch("https://api.imgur.com/3/image",configObj)
             .then(resp => resp.json())
             .then(json => {
-                console.log(json.data.link)
                 postImgToBackend(json.data.link, event)
             })
             .catch(error => {
