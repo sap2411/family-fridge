@@ -325,34 +325,6 @@ document.addEventListener("DOMContentLoaded", () => {
             buildFridge(e)
         })
 
-        function buildAssociations(e, fridge_id){
-            console.log("heres the fridge_id")
-            let arr = [loggedInUserId, e.target.friends1.value, e.target.friends2.value, e.target.friends3.value, e.target.friends4.value, e.target.friends5.value]
-            console.dir(arr);
-
-            arr.forEach(item => {
-                if(item != 'null'){
-                    const data = {
-                        "user_id": item,
-                        "fridge_id": fridge_id
-                    }
-                    const configObj = {
-                        'method': 'POST',
-                        'headers': {
-                            'Content-Type': "application/json",
-                            Accept: 'application/json'
-                        },
-                        'body': JSON.stringify(data)
-                    }
-                    
-                    fetch('http://localhost:3000/user_fridges', configObj)
-                    .then(resp => resp.json())
-                    .then(json => console.log(json))
-                    .catch(error => {alert(error)})
-                }
-            })
-        }
-
         function buildFridge(e){
             let user_fridge_data = [{user_id: loggedInUserId}]
             friends_array.forEach(friend => {
