@@ -105,8 +105,8 @@
 .album .album-card .image .fridge {
     object-fit: cover;
     object-position: 50% 0;
-    height: 150px;
-    width: 70px;
+    height: 160px;
+    width: 95px;
 }
 
 /* .polaroid{
@@ -136,7 +136,8 @@
     background-color: white;
     position: center;
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
-
+    -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
     /* margin: 0 auto;
         float: none;
         margin-top: 150px;
@@ -144,46 +145,114 @@
 }
 
 .polaroid-1{
-    top: 340px;
-    left: 460px;
+    top: 190px;
+    left: 290px;
 }
 .polaroid-2{
-    top: 340px;
-    left: 630px;
+    top: 190px;
+    left: 470px;
 }
 .polaroid-3{
-    top: 630px;
-    left: 460px;
+    top: 450px;
+    left: 290px;
 }
 .polaroid-4{
-    top: 630px;
-    left: 630px;
+    top: 450px;
+    left: 470px;
 }
 .polaroid-5{
-    top: 815px;
-    left: 250px;
+    top: 645px;
+    left: 110px;
 }
 .polaroid-6{
-    top: 815px;
-    left: 460px;
+    top: 645px;
+    left: 290px;
 }
 .polaroid-7{
-    top: 815px;
-    left: 630px;
+    top: 645px;
+    left: 470px;
 }
 .polaroid-8{
-    top: 1000px;
-    left: 250px;
+    top: 840px;
+    left: 110px;
 }
 .polaroid-9{
-    top: 1000px;
-    left: 460px;
+    top: 840px;
+    left: 290px;
 }
 .polaroid-10{
-    top: 1000px;
-    left: 630px;
+    top: 840px;
+    left: 470px;
 }
 
+/* .polaroid-card{ 
+    position: relative;
+    box-align: center;
+    height: 155px;
+    width: 150px;
+    text-align: center;
+    background-color: white;
+    position: center;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+
+    /* margin: 0 auto;
+        float: none;
+        margin-top: 150px;
+        margin-bottom: 10px */
+/* } */
+
+/* .polaroid-1{
+    transform: rotate(13deg);
+    top: -1770px;
+    left: 280px;
+}
+.polaroid-2{
+    transform: rotate(-4deg);
+    top: -2080px;
+    left: 470px;
+}
+.polaroid-3{
+    transform: rotate(5deg);
+    top: -750px;
+    left: 280px;
+}
+.polaroid-4{
+    transform: rotate(2deg);
+    top: -1059px;
+    left: 470px;
+}
+.polaroid-5{
+    transform: rotate(-7deg);
+    top: -1170px;
+    left: 90px;
+}
+.polaroid-6{
+    transform: rotate(0deg);
+    top: -1015px;
+    left: 280px;
+}
+.polaroid-7{
+    transform: rotate(-5deg);
+    top: -705px;
+    left: 470px;
+}
+.polaroid-8{
+    transform: rotate(-1deg);
+    top: -660px;
+    left: 90px;
+}
+.polaroid-9{
+    transform: rotate(10deg);
+    top: -1280px;
+    left: 280px;
+}
+.polaroid-10{
+    transform: rotate(-4deg);
+    top: -505px;
+    left: 470px;
+} */
 
 
 
@@ -204,6 +273,7 @@
 }
 
 .fridge-display{
+    position: relative;
     margin-left: auto;
     margin-right: auto;
     height: 1200px;
