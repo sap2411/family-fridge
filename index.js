@@ -171,8 +171,35 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(`http://localhost:3000/fridges/${id}`)
         .then(resp => resp.json())
         .then(json => {
-            replaceable.innerHTML = fridgePage(json)
+            replaceable.innerHTML = fridgePage(json);
+            populateFridge(json)
         })
+
+        function populateFridge(fridge){
+            console.log("start")
+            let fridgeDiv = document.getElementById('fridge-display');
+            let i = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+            fridge.data.attributes.images.forEach(pic => {
+                console.log("forEach")
+                let polDiv = document.createElement('div');
+                let index = Math.floor(Math.random() * Math.floor(i.length));
+                polDiv.className = `polaroid-card polaroid-${i[index]}`
+                i.splice(index, 1)
+                let img = document.createElement('img');
+                img.className = 'fridge-img'
+                img.src = pic.url
+                let titleDiv = document.createElement('div');
+                titleDiv.className = 'img-text-div'
+                let p = document.createElement('p')
+                p.innerText = pic.name
+                titleDiv.appendChild(p)
+                polDiv.appendChild(img)
+
+                polDiv.appendChild(titleDiv)
+                fridgeDiv.append(polDiv)
+            })
+
+        }
     }
 
     function buildUploadImgPage(){
