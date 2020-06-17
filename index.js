@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 buildFridgePage(fridge.id)
             })
             div2.className = "image"
-            img.src = fridge.url
+            img.src = 'https://images.homedepot-static.com/productImages/5abd73e7-0790-4ab4-aa99-acd64ed909cc/svn/red-magic-chef-mini-fridges-hmcr320re-64_1000.jpg'
             img.className = "fridge pointer"
             div2.appendChild(img)
             div2.appendChild(name)
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         })
 
         function populateFridge(fridge){
-            console.log("start")
+            console.dir(fridge)
             let fridgeDiv = document.getElementById('fridge-display');
             let i = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             fridge.data.attributes.images.forEach(pic => {
@@ -194,11 +194,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 p.innerText = pic.name
                 titleDiv.appendChild(p)
                 polDiv.appendChild(img)
-
                 polDiv.appendChild(titleDiv)
-                fridgeDiv.append(polDiv)
+                fridgeDiv.appendChild(polDiv)
+                addListenerToPolaroid(polDiv)
             })
 
+        }
+
+        function addListenerToPolaroid(polaroid){
+            polaroid.addEventListener('click', function(){
+
+            })
         }
     }
 

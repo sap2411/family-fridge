@@ -4,7 +4,7 @@ return `
 <div class="fridge-display"id="fridge-display">
     <img id="fridge-show" src='https://images.homedepot-static.com/productImages/5abd73e7-0790-4ab4-aa99-acd64ed909cc/svn/red-magic-chef-mini-fridges-hmcr320re-64_1000.jpg'>
 </div>
-        
+
 
 <button id='post-to-fridge' class="btn btn-primary" type='button'>Post To Fridge</button>
 <button id='leave-fridge' class="btn btn-primary" type='button'>Leave Fridge</button>
