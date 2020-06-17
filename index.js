@@ -300,13 +300,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.getElementById('new_fridge_form').addEventListener('submit', (e) => {
             e.preventDefault()
+            buildFridge(e)
+        })
 
+        function buildAssociations(e, fridge_id){
+            console.log("heres the fridge_id")
+            let arr = [loggedInUserId, e.target.friends1.value, e.target.friends2.value, e.target.friends3.value, e.target.friends4.value, e.target.friends5.value]
+            console.dir(arr);
+
+            arr.forEach(item => {
+                if(item != 'null'){
+                    const data = {
+                        "user_id": item,
+                        "fridge_id": fridge_id
+                    }
+                    const configObj = {
+                        'method': 'POST',
+                        'headers': {
+                            'Content-Type': "application/json",
+                            Accept: 'application/json'
+                        },
+                        'body': JSON.stringify(data)
+                    }
+                    
+                    fetch('http://localhost:3000/user_fridges', configObj)
+                    .then(resp => resp.json())
+                    .then(json => console.log(json))
+                    .catch(error => {alert(error)})
+                }
+            })
+        }
+
+        function buildFridge(e){
+            console.dir(e)
             const data = {
-                "url": e,
-                "name": e.target.name.value,
-                "description": e.target.description.value,
-                "fridge_id": e.target.fridge.value,
-                "user_id": loggedInUserId
+                "url": 'https://c.shld.net/rpx/i/s/i/spin/10109385/prod_22969766112?hei=333&wid=333&op_sharpen=1',
+                "name": e.target.title.value,
             }
             const configObj = {
                 'method': 'POST',
@@ -319,9 +348,12 @@ document.addEventListener("DOMContentLoaded", () => {
             
             fetch('http://localhost:3000/fridges', configObj)
             .then(resp => resp.json())
-            .then(refreshUser)
+            .then(json => {
+                console.log(json.data.id)
+                buildAssociations(e, json.data.id)
+                refreshUser()
+            })
             .catch(error => {alert(error)})
-
-        })
+        }
       }
 })
