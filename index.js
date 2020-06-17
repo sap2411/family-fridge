@@ -272,22 +272,20 @@ document.addEventListener("DOMContentLoaded", () => {
         let friends3 = document.getElementById("friends3")
         let friends4 = document.getElementById("friends4")
         let friends5 = document.getElementById("friends5")
+
+        let friends_array = [friends1, friends2, friends3, friends4, friends5]
       
         allUsers.forEach(user => {
           if (user.id != loggedInUserId) {
-            friends1.appendChild(addFriend(user))
-            friends2.appendChild(addFriend(user))
-            friends3.appendChild(addFriend(user))
-            friends4.appendChild(addFriend(user))
-            friends5.appendChild(addFriend(user))
+            friends_array.forEach(friends => {
+                friends.appendChild(addFriend(user))
+            })
           }
         })
 
-        addSelectFriendEvent(friends1)
-        addSelectFriendEvent(friends2)
-        addSelectFriendEvent(friends3)
-        addSelectFriendEvent(friends4)
-        addSelectFriendEvent(friends5)
+        friends_array.forEach(friends => {
+            addSelectFriendEvent(friends)
+        })
 
         function addFriend(user) {
             let option = document.createElement("option")
@@ -305,7 +303,6 @@ document.addEventListener("DOMContentLoaded", () => {
         function addSelectFriendEvent(selection) {
             selection.addEventListener ("change", function(event) {
                 let friends_value_array = [friends1.value, friends2.value, friends3.value, friends4.value, friends5.value]
-                let friends_array = [friends1, friends2, friends3, friends4, friends5]
                 friends_array.forEach(friends => removeFriendOptions(friends))
 
                 allUsers.forEach(user => {
@@ -357,10 +354,16 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function buildFridge(e){
-            console.dir(e)
+            let user_fridge_data = [{user_id: loggedInUserId}]
+            friends_array.forEach(friend => {
+                if (friend.value != "null") {
+                    user_fridge_data.push({user_id: friend.value})
+                }
+            })
             const data = {
                 "url": 'https://c.shld.net/rpx/i/s/i/spin/10109385/prod_22969766112?hei=333&wid=333&op_sharpen=1',
                 "name": e.target.title.value,
+                "user_fridges_attributes": user_fridge_data
             }
             const configObj = {
                 'method': 'POST',
@@ -373,11 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             fetch('http://localhost:3000/fridges', configObj)
             .then(resp => resp.json())
-            .then(json => {
-                console.log(json.data.id)
-                buildAssociations(e, json.data.id)
-                refreshUser()
-            })
+            .then(refreshUser)
             .catch(error => {alert(error)})
         }
       }
