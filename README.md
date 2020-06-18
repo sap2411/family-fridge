@@ -1,21 +1,11 @@
 # family-fridge
 JS/Rails Project
 
-
-Family Fridge front-end:
-https://github.com/sap2411/family-fridge
-
-Family Fridge Back-end:
-
-
-Family Fridge 
-
-
 # Family Fridge - Frontend
 
 Family Fridge is an app for sharing important moments and accomplishments with those you are close with, simulating polaroids on a virtual fridge to bring back that old way of celebrating eachothers achievments from childhood. 
 
-[This](https://github.com/aidanmc95/family-fridge-backend) is a link the the backend repository.
+[This](https://github.com/aidanmc95/family-fridge-backend) is a link the the back-end repository.
 
 ## Motivation
 
