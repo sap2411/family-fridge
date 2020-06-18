@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let loggedInUser = false
     let loggedInUserId = false
     let allUsers = false
+    let old = false
     handleLogin()
     HandleSignup()
 
@@ -209,15 +210,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function fillCommentDiv(image){
-            let stolen = document.getElementById('stolen');
-            stolen.hidden ? (stolen.hidden = false):(stolen.hidden = true);
-
+            let commentArea = document.getElementById('comment-area');
+            if(!commentArea.hidden && image.id == old){
+                commentArea.hidden = true
+            }else{
+                commentArea.hidden = false
+            }
                     
-            const imgTag = document.querySelector('.image')
+            const imgTag = document.querySelector('.image2')
             const title = document.querySelector('.title')
             const commentList = document.querySelector('.comments')
             const post = document.querySelector('.comment-form')
-            let imgId
+            let imgId = false
             fetchImg(image)
 
             function fetchImg(image){
@@ -228,10 +232,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             function postCommentFetch(e){
+                console.dir(loggedInUser)
                 const data = {
                     "image_id": imgId,
                     'user_id': loggedInUserId,
-                    "comment_info": e.target.comment.value
+                    "comment_info": `${loggedInUser.name}: ${e.target.comment.value}`
                 }
                 const configObj = {
                     'method': 'POST',
@@ -244,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 fetch('http://localhost:3000/comments', configObj)
                 .then(resp => resp.json())
-                .then(json => displayComment(json))
+                .then(json => displayNewComment(json))
                 post.comment.value = ''
                 
             }
@@ -260,13 +265,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // display info
             function showImg(image){
-                console.dir(image)
-                imgId = image.id
-                imgTag.src = image.url
-                title.innerText = image.name
+                imgId = image.data.id
+                old = imgId
+                imgTag.src = image.data.attributes.url
+                title.innerText = image.data.attributes.name
+                commentList.innerHTML = ''
                 for (const comment of image.data.attributes.comments){
                     displayComment(comment)
                 }
+                window.scrollTo(0,document.body.scrollHeight);
             }
         
             function displayComment(json){
@@ -278,6 +285,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 commentList.appendChild(li)
             }
 
+            function displayNewComment(json){
+                const li = document.createElement('li')
+                li.className = 'li-section'
+                li.id = json.data.id
+                li.textContent = json.data.attributes.comment_info
+                deleteButton(li)
+                commentList.appendChild(li)
+            }
   
             // button and event listeners
             function deleteButton(li){

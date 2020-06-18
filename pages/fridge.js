@@ -6,7 +6,7 @@ return `
 </div>
 
 <div id='comment-box'>
-<div class="image-container" id="stolen" hidden='true'>
+<div class="image-container" id="comment-area" hidden='true'>
       <div class="image-card">
         <h2 class="title">Title of image goes here</h2>
         <img  class="image2" />
