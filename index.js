@@ -13,16 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function navButtons(){
         document.getElementById('home-button').addEventListener('click', function(){
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
             buildAccountPage()
         })
         document.getElementById('uplaod-image-button').addEventListener('click', function(){
             //run function 'buildUploadImgPage()' once its developed, this is just placeholder
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
             buildUploadImgPage()
         })
         document.getElementById('add-fridge-button').addEventListener('click', function(){
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
             buildNewFridgePage(allUsers, loggedInUser)
         })
         document.getElementById('logout-button').addEventListener('click', function(){
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
             location.reload();
         })
         navoptions.style.display = "flex"
@@ -111,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.className = "body_1 border-light"
         replaceable.className = "card_1 "
         replaceable.innerHTML = accountPage()
-        document.querySelector('.display-name').innerText = loggedInUser.name
+        document.querySelector('.display-name').innerText = loggedInUser.username
         loggedInUser.images.forEach(image => {
             addPhotoToCollection(image)
         })
@@ -134,7 +138,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 const img = document.createElement('img')
                 img.src = image.url
                 img.className = "pic"
+                const name = document.createElement('p')
+                name.innerText = image.name
                 div2.appendChild(img)
+                div2.appendChild(name)
                 div.appendChild(div2)
                 album.appendChild(div)
             }
@@ -149,6 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
             name.innerText = fridge.name
             const img = document.createElement('img')
             img.addEventListener('click', function(){
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
                 buildFridgePage(fridge.id)
             })
             div2.className = "image"
