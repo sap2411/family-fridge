@@ -42,6 +42,9 @@
     width: 700px;
 }
 
+body{
+    font-family: "Times New Roman", Times, serif;
+}
 
 .body{
     /* background image centered and non repeating */
@@ -179,6 +182,7 @@
 }
 
 .img-text-div{
+    font-family: "Comic Sans MS", cursive, sans-serif;
     padding: 3px 3px;
 }
 
@@ -234,7 +238,7 @@
     width: 100%;
     display: flex;
     justify-content: center;
-  }
+}
   
   .image-card {
     width: 300px;
@@ -271,45 +275,12 @@
     padding: 0 10px;
   }
   
-  .likes {
-    font-size: 0.9rem;
-    font-weight: 600;
-  }
-  
-  .like-button {
-    color: rgb(255, 127, 80);
-    font-size: 1.5rem;
-    border: none;
-    background: none;
-    transition: color 300ms;
-    cursor: pointer;
-  }
   
   .delete-button {
     justify-content: space-between;
     align-items: left;
     transition: color 300ms;
     cursor: pointer;
-  }
-  
-  .down-button {
-    font-size: 1.5rem;
-    border: none;
-    background: none;
-    transition: color 300ms;
-    cursor: pointer;
-  }
-  
-  .like-button:hover {
-    color: rgb(241, 71, 19);
-  }
-  
-  .like-button:active {
-    color: rgb(253, 159, 124);
-  }
-  
-  .like-button:focus {
-    outline: none;
   }
   
   .comments {

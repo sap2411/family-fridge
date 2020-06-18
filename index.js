@@ -323,7 +323,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             function deleteButton(li){
                 let button = document.createElement('button')
-                button.className = 'delete-button'
+                button.className = 'btn-primary delete-button'
                 button.innerHTML = 'Delete'
                 li.appendChild(button)
                 button.addEventListener('click', function(e){

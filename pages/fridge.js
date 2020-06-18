@@ -10,7 +10,7 @@ return `
       <div class="image-card">
         <h2 class="title">Title of image goes here</h2>
         <img  class="image2" />
-        <h3 id='description' class="title"></h3>
+        <h3 id='description' class="like-section title"></h3>
         <ul class="comments">
         </ul>
         <form class="comment-form">
