@@ -65,6 +65,7 @@ Contributions are welcome, submit a pull request!
 
 * **Steven Parsons** - [GitHub](https://github.com/sap24471)
 * **Aidan Muller-Cohn** - [GitHub](https://github.com/aidanmc95)
+* **Erin Reames** - [GitHub](https://github.com/ErinReames)
 
 ## License
 
