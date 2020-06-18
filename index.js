@@ -344,21 +344,25 @@ document.addEventListener("DOMContentLoaded", () => {
             const formData = new FormData();
             formData.append('image', imageFile);
 
-            const configObj = {
-                method: "POST",
-                headers: {
-                    Authorization: "Client-ID 1c546c5b9f3b4ec"
-                },
-                body: formData
+            if (imageFile) {
+                const configObj = {
+                    method: "POST",
+                    headers: {
+                        Authorization: "Client-ID 1c546c5b9f3b4ec"
+                    },
+                    body: formData
+                }
+                fetch("https://api.imgur.com/3/image",configObj)
+                .then(resp => resp.json())
+                .then(json => {
+                    postImgToBackend(json.data.link, event)
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+            } else {
+                alert("Please Upload an Image")
             }
-            fetch("https://api.imgur.com/3/image",configObj)
-            .then(resp => resp.json())
-            .then(json => {
-                postImgToBackend(json.data.link, event)
-            })
-            .catch(error => {
-                console.error(error);
-            });
         })
 
         function postImgToBackend(link, e){
