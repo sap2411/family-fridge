@@ -339,12 +339,13 @@ document.addEventListener("DOMContentLoaded", () => {
         populateForm()
         form.addEventListener("submit", function(event) {
             event.preventDefault()
+            console.dir(event.target.fridge_selection.value)
             const fileInput = event.target.querySelector('input');
             const imageFile = fileInput.files[0];
             const formData = new FormData();
             formData.append('image', imageFile);
 
-            if (imageFile) {
+            if (imageFile && event.target.fridge_selection.value != "null") {
                 const configObj = {
                     method: "POST",
                     headers: {
@@ -361,7 +362,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.error(error);
                 });
             } else {
-                alert("Please Upload an Image")
+                alert("Please make sure you have Uploaded an Image and Chosen a fridge")
             }
         })
 
