@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let loggedInUser = false
     let loggedInUserId = false
     let allUsers = false
-    let old = false
     handleLogin()
     HandleSignup()
 
@@ -181,62 +180,50 @@ document.addEventListener("DOMContentLoaded", () => {
         })
 
         function populateFridge(fridge){
-            console.dir(fridge)
+            const post = document.querySelector('.comment-form')
+            const imgTag = document.querySelector('.image2')
+            const title = document.querySelector('.title')
+            const commentList = document.querySelector('.comments')
             let fridgeDiv = document.getElementById('fridge-display');
+
+            post.addEventListener('submit', function(e){
+                e.preventDefault();
+                postCommentFetch(e)
+            })
+
             let i = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-            fridge.data.attributes.images.forEach(pic => {
-                console.dir(pic)
+            const fridge_images = fridge.data.attributes.images.length
+            let j = fridge_images
+            if (fridge_images > 10) {
+                j = 10
+            }
+            while(j > 0) {
+                let pic = fridge.data.attributes.images[fridge_images - j]
                 let polDiv = document.createElement('div');
                 let index = Math.floor(Math.random() * Math.floor(i.length));
-                polDiv.className = `polaroid-card polaroid-${i[index]} r-${i[index]}`
+                polDiv.className = `polaroid-card polaroid-${i[index]} pointer r-${i[index]}`
                 i.splice(index, 1)
+
                 let img = document.createElement('img');
                 img.className = 'fridge-img'
                 img.src = pic.url
                 img.name = pic.id
+
                 let titleDiv = document.createElement('div');
                 titleDiv.className = 'img-text-div'
                 let p = document.createElement('p')
                 p.innerText = pic.name
+                
                 titleDiv.appendChild(p)
                 polDiv.appendChild(img)
                 polDiv.appendChild(titleDiv)
                 fridgeDiv.appendChild(polDiv)
+
                 addListenerToPolaroid(polDiv, pic)
-            })
-
-        }
-
-        function addListenerToPolaroid(polaroid, json){
-            polaroid.addEventListener('click', function(){
-                fillCommentDiv(json)
-            })
-        }
-
-        function fillCommentDiv(image){
-            let commentArea = document.getElementById('comment-area');
-            if(!commentArea.hidden && image.id == old){
-                commentArea.hidden = true
-            }else{
-                commentArea.hidden = false
+                j--
             }
-                    
-            const imgTag = document.querySelector('.image2')
-            const title = document.querySelector('.title')
-            const commentList = document.querySelector('.comments')
-            const post = document.querySelector('.comment-form')
-            let imgId = false
-            fetchImg(image)
-
-            function fetchImg(image){
-                fetch(`http://localhost:3000/images/${image.id}`)
-                .then(resp => resp.json())
-                .then(json => showImg(json))
-            }
-
 
             function postCommentFetch(e){
-                console.dir(loggedInUser)
                 const data = {
                     "image_id": imgId,
                     'user_id': loggedInUserId,
@@ -255,33 +242,37 @@ document.addEventListener("DOMContentLoaded", () => {
                 .then(resp => resp.json())
                 .then(json => displayNewComment(json))
                 post.comment.value = ''
-                
             }
 
-            function deleteCommentFetch(n){
-                fetch(`http://localhost:3000/comments/${n}`, {method: 'delete'})
-                .then(resp => resp.json())
-                .then(function(){
-                    const li = document.getElementById(n)
-                    li.remove()
+            function displayNewComment(json){
+                const li = document.createElement('li')
+                li.className = 'li-section'
+                li.id = json.data.id
+                li.textContent = json.data.attributes.comment_info
+                deleteButton(li)
+                commentList.appendChild(li)
+            }
+
+            function addListenerToPolaroid(polaroid, json){
+                polaroid.addEventListener('click', function(){
+                    fillCommentDiv(json)
                 })
             }
 
-            // display info
-            function showImg(image){
-                console.dir(image)
-                imgId = image.data.id
-                old = imgId
-                imgTag.src = image.data.attributes.url
-                title.innerText = image.data.attributes.name
-                document.getElementById("description").innerText = image.data.attributes.description;
-                commentList.innerHTML = ''
-                for (const comment of image.data.attributes.comments){
-                    displayComment(comment)
+            function fillCommentDiv(image){
+                let commentArea = document.getElementById('comment-area');
+                const imageCommentId = document.querySelector('.image-id')
+    
+                if(!commentArea.hidden && image.id == imageCommentId.value){
+                    commentArea.hidden = true
+                }else{
+                    imageCommentId.value = image.id
+                    commentArea.hidden = false
+    
+                    fetchImg(image)
                 }
-                window.scrollTo(0,document.body.scrollHeight);
             }
-        
+
             function displayComment(json){
                 const li = document.createElement('li')
                 li.className = 'li-section'
@@ -293,17 +284,35 @@ document.addEventListener("DOMContentLoaded", () => {
                 commentList.appendChild(li)
             }
 
-            function displayNewComment(json){
-                console.log(`heres new comment ${json}`)
-                const li = document.createElement('li')
-                li.className = 'li-section'
-                li.id = json.data.id
-                li.textContent = json.data.attributes.comment_info
-                deleteButton(li)
-                commentList.appendChild(li)
+            function fetchImg(image){
+                fetch(`http://localhost:3000/images/${image.id}`)
+                .then(resp => resp.json())
+                .then(json => showImg(json))
+                .catch(error => console.error(error))
             }
-  
-            // button and event listeners
+
+            function deleteCommentFetch(n){
+                fetch(`http://localhost:3000/comments/${n}`, {method: 'delete'})
+                .then(resp => resp.json())
+                .then(function(){
+                    const li = document.getElementById(n)
+                    li.remove()
+                })
+                .catch(error => console.error(error))
+            }
+            
+            function showImg(image){
+                imgId = image.data.id
+                imgTag.src = image.data.attributes.url
+                title.innerText = image.data.attributes.name
+                document.getElementById("description").innerText = image.data.attributes.description;
+                commentList.innerHTML = ''
+                for (const comment of image.data.attributes.comments){
+                    displayComment(comment)
+                }
+                window.scrollTo(0,document.body.scrollHeight);
+            }
+
             function deleteButton(li){
                 let button = document.createElement('button')
                 button.className = 'delete-button'
@@ -313,11 +322,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     deleteCommentFetch(e.target.parentNode.id)
                 })
             }
-
-            post.addEventListener('submit', function(e){
-                e.preventDefault();
-                postCommentFetch(e)
-            })
         }
     }
 
