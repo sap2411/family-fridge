@@ -20,18 +20,20 @@ return `
             name="comment"
             placeholder="Add a comment..."
           />
+          <input
+            class="image-id"
+            type="hidden"
+            name="image_id"
+          />
           <button class="comment-button" type="submit">Post</button>
         </form>
       </div>
     </div>
 </div>
-
-
-<button id='post-to-fridge' class="btn btn-primary" type='button'>Post To Fridge</button>
-<button id='leave-fridge' class="btn btn-primary" type='button'>Leave Fridge</button>
-
 `
 }
+{/* <button id='post-to-fridge' class="btn btn-primary" type='button'>Post To Fridge</button>
+<button id='leave-fridge' class="btn btn-primary" type='button'>Leave Fridge</button> */}
 
 /* <p>${fridge.data.attributes.images[0].description}</p> 
         <button class="btn btn-primary" type='button'>Remove From Fridge</button> */
