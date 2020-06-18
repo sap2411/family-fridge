@@ -95,16 +95,20 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(resp => resp.json())
             .then(json => {
                 navButtons()
-                document.getElementById("user").innerText = loggedInUser.id
                 loggedInUserId = json.data.id
                 loggedInUser = json.data.attributes
-                refreshUser()
-            }).catch(error => {alert(error)})
+                document.getElementById("user").innerText = loggedInUser.id
+                fetch('http://localhost:3000/users')
+                .then(resp => resp.json())
+                .then(json => {
+                    allUsers = json;
+                    refreshUser()
+                })})
+                .catch(error => {alert(error)})
         }
     }
 
     function buildAccountPage(){
-        console.log("in build account page")
         document.body.className = "body_1 border-light"
         replaceable.className = "card_1 "
         replaceable.innerHTML = accountPage()
@@ -265,10 +269,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // display info
             function showImg(image){
+                console.dir(image)
                 imgId = image.data.id
                 old = imgId
                 imgTag.src = image.data.attributes.url
                 title.innerText = image.data.attributes.name
+                document.getElementById("description").innerText = image.data.attributes.description;
                 commentList.innerHTML = ''
                 for (const comment of image.data.attributes.comments){
                     displayComment(comment)
@@ -281,11 +287,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 li.className = 'li-section'
                 li.id = json.id
                 li.textContent = json.comment_info
-                deleteButton(li)
+                if(loggedInUserId == json.user_id){
+                    deleteButton(li)
+                }
                 commentList.appendChild(li)
             }
 
             function displayNewComment(json){
+                console.log(`heres new comment ${json}`)
                 const li = document.createElement('li')
                 li.className = 'li-section'
                 li.id = json.data.id
@@ -337,7 +346,6 @@ document.addEventListener("DOMContentLoaded", () => {
             })
             .catch(error => {
                 console.error(error);
-                //alert('Upload failed: ' + error);
             });
         })
 
@@ -461,7 +469,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(refreshUser)
             .catch(error => {alert(error)})
         }
-      }
+    }
 })
 
 
