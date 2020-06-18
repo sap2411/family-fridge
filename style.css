@@ -40,6 +40,7 @@
     object-position: 50% 0;
     height: 1200px;
     width: 700px;
+    border-radius: 20px;
 }
 
 body{
@@ -80,11 +81,12 @@ body{
 
 .album {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 0px;
+    grid-template-columns: repeat(auto-fill,minmax(200px, 1fr));
     grid-row-gap: 35px;
+    grid-column-gap: 0px;
     margin: 0px 0;
     grid-auto-rows: 150px;
+    justify-items: center;
 }
   
 .album .album-card {
@@ -98,14 +100,17 @@ body{
 }
 
 .album .album-card .image .pic {
-      height: 150px;
-      width: 150px;
-     
-        position: relative;
-        /* for Description */
-        /* content: attr(title); */
- 
-      object-fit: cover;
+    height: 150px;
+    width: 150px;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, );
+    border-radius: 5px;
+    position: relative;
+    /* for Description */
+    /* content: attr(title); */
+
+    object-fit: cover;
 }
 
 .album .album-card .image .fridge {
@@ -113,6 +118,10 @@ body{
     object-position: 50% 0;
     height: 160px;
     width: 95px;
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+    border-radius: 5px;
 }
 
 .polaroid-card{ 
@@ -125,7 +134,7 @@ body{
     position: center;
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 1);
     -moz-box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .5);
 }
 
 .polaroid-1{
